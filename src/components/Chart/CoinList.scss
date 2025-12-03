@@ -1,0 +1,306 @@
+$first: 100px;
+$second: 85px;
+$third: 75px;
+$fourth: 75px;
+
+.coin {
+    padding: 0;
+    height: min-content;
+    margin-bottom: 0;
+
+    &__search {
+        padding: var(--paddingY);
+        padding-bottom: 0;
+
+        &__wrap {
+            display: flex;
+            align-items: center;
+            border-radius: var(--border-radius);
+            padding-left: 12px;
+            background-color: var(--background);
+            border: 1px solid var(--border-color);
+            color: var(--font-color-down);
+            &__icon {
+                font-size: 1rem;
+            }
+
+            &__reset {
+                cursor: pointer;
+                width: 40px;
+                height: 20px;
+                text-align: center;
+                line-height: 20px;
+                transition: color 0.1s;
+
+                &:hover {
+                    color: var(--font-color);
+                }
+            }
+        }
+    }
+
+    &__exchange {
+        display: flex;
+        padding: var(--padding);
+        border-bottom: 1px solid var(--border-color);
+
+        &__list {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: calc(100% / 6 - 21px);
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-right: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--active);
+            }
+
+            &.SPOT.active {
+                border-color: var(--border-color);
+                background: var(--main-color);
+            }
+
+            &.FUTURE:after {
+                content: "";
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                width: 7px;
+                height: 7px;
+                background: linear-gradient(45deg, #ff6b6b, #ffa500);
+                border-radius: 2px;
+                box-shadow: 0 1px 3px rgba(255, 107, 107, 0.3);
+                z-index: 2;
+            }
+
+            &.FUTURE.active {
+                border-color: var(--border-color);
+                background: #ff9d9d;
+            }
+
+            &__icon {
+                width: 26px;
+                border-radius: 100%;
+            }
+        }
+
+        &__list:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        &__list:last-child {
+            border-radius: 0 4px 4px 0;
+            border-right: 1px solid  var(--border-color);
+        }
+    }
+
+    &__list-header {
+        padding: 6px var(--paddingY);
+        font-size: 0.8rem;
+        color: var(--fade-color);
+        display: flex;
+        align-items: center;
+        border-bottom: var(--border);
+        text-align: center;
+
+        &__name {
+            min-width: $first;
+        }
+
+        &__price {
+            min-width: $second;
+        }
+
+        &__rate {
+            min-width: $third;
+        }
+
+        &__volume {
+            min-width: $fourth;
+        }
+    }
+
+    &__list-wrap {
+        max-height: 80vh;
+        overflow: scroll;
+        -ms-overflow-style: none;    
+    }
+    &__list-wrap::-webkit-scrollbar{
+        display:none;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: var(--padding);
+        border-bottom: var(--border);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &.up {
+            background-color: var(--up-fade);
+        }
+
+        &.down {
+            background-color: var(--down-fade);
+        }
+        
+        &.active {
+            background-color: var(--active);
+        }
+
+        &:hover {
+            background-color: var(--active);
+        }
+
+        &__coin {
+
+            &__name {
+                display: flex;
+                align-items: center;
+                min-width: $first;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                
+                &__warning {
+                    width: 12px;
+                    height: 12px;
+                    margin-left: 2px;
+                    border-radius: 2px;
+                    background-color: #ff0000;
+                    font-size: 0.7rem;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 11px;
+                }
+            }
+
+            &__symbol {
+                color: var(--font-color-fade);
+                font-size: 0.8rem;
+            }
+        }
+        
+        &__price {
+            font-weight: 600;
+            min-width: $second;
+            text-align: right;
+
+            &.up {
+                color: var(--up);
+            }
+            &.down {
+                color: var(--down);
+            }
+        }
+
+        &__rate {
+            min-width: $third;
+            text-align: right;
+
+            &.up {
+                color: var(--up);
+            }
+            &.down {
+                color: var(--down);
+            }
+        }
+
+        &__volume {
+            font-size: 0.8rem;
+            text-align: right;
+            min-width: $fourth;
+
+            &__unit {
+                color: var(--font-color-fade);
+            }
+        }
+    }
+}
+
+.order-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    &__icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 0.7rem;
+
+        i {
+            color: #ccc;
+            width: 10px;
+            height: 0px;
+            margin: 2px 0;
+        }
+
+        .up {
+            color: var(--up) !important;
+        }
+
+        .down {
+            color: var(--down) !important;
+        }
+    }
+}
+
+@media (max-width: 978px) {
+    .coin {
+        display: none;
+        position: fixed;
+        right: -380px;
+        height: 100%;
+        z-index: 200;
+        width: 100%;
+
+        &__list-wrap {
+            max-height: 100%;
+        }
+
+        &__list-header {
+            &__name,
+            &__price,
+            &__rate,
+            &__volume {
+                width: 100%;
+                min-width: none;
+            }
+        }
+        &__list {
+            &__name,
+            &__price,
+            &__rate,
+            &__volume {
+                width: 100%;
+            }
+        }
+
+        &.visible {
+            display: block;
+            right: 0;
+            top: 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .coin {
+        height: calc(100% - 62px);
+        &__list-wrap {
+            max-height: calc(100% - 140px);
+        }
+    }
+}

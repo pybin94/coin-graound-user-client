@@ -1,0 +1,33 @@
+.chat-footer {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    border-radius: 100px;
+    background: var(--border-color);
+
+    &__input {
+        border: none;
+        border-radius: 100px;
+        background: var(--border-color);
+        color: #000 !important;
+    }
+
+    &__send {
+        border: none;
+        border-radius: 100px;
+        background-color: var(--main-color);
+        min-width: 28px;
+        min-height: 28px;
+        color: #fff;
+        padding: 0;
+        
+        &:hover {
+            color: yellow;
+        }
+
+        &__icon {
+            line-height: 28px;
+        }
+    }
+}

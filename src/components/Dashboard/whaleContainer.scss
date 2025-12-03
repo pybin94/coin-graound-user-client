@@ -1,0 +1,95 @@
+.whale-container {
+    background: var(--d-background);
+    width: 100%;
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid var(--d-border);
+    min-height: 150px;
+    max-height: 260px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--d-border);
+
+        h3 {
+            margin: 0;
+            padding: 4px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--font-color);
+        }
+
+        &__button {
+            display: none;
+            padding: 6px 12px;
+            background: var(--card);
+            border: 1px solid var(--d-item-border);
+            border-radius: 6px;
+            color: var(--font-color);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--d-border);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &__list {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding-top: 1px;
+        padding-right: 4px;
+        gap: 6px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--d-border);
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--d-thumb);
+            border-radius: 2px;
+        }
+    }
+
+    &__empty-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        color: var(--d-empty-state);
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 978px) {
+    .whale-container {
+        &__header {
+    
+            &__button {
+                display: block;
+            }
+        }
+    }
+}

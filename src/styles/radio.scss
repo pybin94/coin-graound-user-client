@@ -1,0 +1,88 @@
+// .radio-inputs {
+//     position: relative;
+//     display: flex;
+//     flex-wrap: wrap;
+//     border-radius: 100px;
+//     border: 1px solid var(--border-color);
+//     color: var(--font-color-down);
+//     padding: 0.2rem;
+//     height: fit-content;
+//     width: fit-content;
+
+//     &__radio {
+//         flex: 1 1 auto;
+//         text-align: center;
+
+//         input {
+//             display: none;
+//         }
+
+//         input:checked + &__name {
+//             background-color: var(--main-color);
+//             color: #fff;
+//             font-weight: 600;
+//         }
+
+//         &__name{
+//             display: flex;
+//             cursor: pointer;
+//             align-items: center;
+//             justify-content: center;
+//             border-radius: 100px;
+//             border: none;
+//             padding: 0.7rem 1rem;
+//             color: var(--font-color-dark);
+//             transition: all .15s ease-in-out;
+
+//             &:hover {
+//                 background-color: var(--main-color);
+//                 color: #fff;
+//                 font-weight: 600;
+//             }
+//         }
+//     }
+// }
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--card);
+    color: var(--font-color-down);
+    padding: 0.3rem;
+    height: fit-content;
+    width: fit-content;
+
+    &__radio {
+        flex: 1 1 auto;
+        text-align: center;
+
+        input {
+            display: none;
+        }
+
+        input:checked + &__name {
+            background-color: var(--background);
+            color: var(--font-color-highlight);
+            font-weight: 600;
+        }
+
+        &__name{
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            border: none;
+            padding: 0.5rem 2.5rem;
+            color: var(--font-color-dark);
+            transition: all .15s ease-in-out;
+
+            &:hover {
+                background-color: var(--background);
+                font-weight: 600;
+            }
+        }
+    }
+}

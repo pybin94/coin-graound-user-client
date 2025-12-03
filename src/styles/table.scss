@@ -1,0 +1,197 @@
+$border-top: var(--main-color);
+$border-color: #2a2a2a;
+$border-light: #3a3a3a;
+
+.table {
+    width: 100%;
+    margin-bottom: var(--distance);
+    background: var(--card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(10px);
+    border: var(--border);
+
+    &__data-none {
+        text-align: center;
+        padding: 3rem 1rem !important;
+        color: #888;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    table {
+        border-collapse: collapse;    
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+
+        thead {
+            background: var(--main-color);
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            }
+        }
+
+        th {
+            text-align: center;
+            padding: 1rem 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid $border-light;
+                transition: all 0.3s ease;
+                position: relative;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &:not(.table__data-none):not(.table__loading) {
+                    &:hover {
+                        background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+                        transform: translateX(4px);
+                        box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            bottom: 0;
+                            width: 3px;
+                            background: var(--main-color);
+                            border-radius: 0 2px 2px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+:global(.table table td) {
+    text-align: center;
+    padding: 1rem 0.8rem;
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+:global(.table table tr:hover td) {
+    color: #fff;
+}
+
+// 모바일 반응형 디자인
+@media (max-width: 768px) {
+    .table {
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        
+        // 스크롤바 스타일링
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: var(--main-color);
+            border-radius: 3px;
+        }
+
+        table {
+            min-width: 600px; // 최소 너비 설정으로 가로 스크롤 보장
+
+            thead {
+                th {
+                    padding: 0.8rem 0.6rem;
+                    font-size: 0.85rem;
+                    white-space: nowrap;
+                }
+            }
+
+            tbody {
+                tr {
+                    &:hover {
+                        transform: none; // 모바일에서는 transform 제거
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+
+        &__data-none {
+            padding: 2rem 1rem !important;
+            font-size: 1rem;
+        }
+    }
+
+    :global(.table table td) {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+}
+
+// 태블릿 반응형 디자인
+@media (max-width: 1024px) and (min-width: 769px) {
+    .table {
+        table {
+            th, td {
+                padding: 0.9rem 0.7rem;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+// 작은 모바일 화면
+@media (max-width: 480px) {
+    .table {
+        border-radius: 6px;
+        
+        table {
+            min-width: 500px;
+            
+            thead th {
+                padding: 0.7rem 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        &__data-none {
+            padding: 1.5rem 0.8rem !important;
+            font-size: 0.9rem;
+        }
+    }
+
+    :global(.table table td) {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.8rem;
+    }
+}

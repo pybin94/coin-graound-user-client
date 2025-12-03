@@ -1,0 +1,55 @@
+$profileSize: 75px;
+
+
+.profile {
+    display: flex;
+    flex-direction: column;
+
+    &__picture {
+        display: none;
+    }
+
+    &__picture-lable {
+        position: relative;
+        display: block;
+        width: $profileSize;
+        margin: var(--paddingY) auto;
+        
+        &__img-wrap {
+            width: $profileSize;
+            height: $profileSize;
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        img {
+            height: $profileSize;
+        }
+
+        &__icon {
+            color: #000;
+            cursor: pointer;
+            position: absolute;
+            width: 1.7rem;
+            height: 1.7rem;
+            line-height: 1.6rem;
+            font-size: 0.8rem;
+            border-radius: $profileSize;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            right: 0;
+            bottom: 0;
+            text-align: center;
+        }
+    }
+
+    &__nickanme {
+        margin: var(--paddingY) 0;
+    }
+
+    &__submit {
+        
+    }
+}

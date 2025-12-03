@@ -1,0 +1,27 @@
+.board {
+    &__form {
+        margin-bottom: 3rem;
+
+        &__modify {
+            display: flex;
+            justify-content: end;
+            margin-bottom: 2rem;
+
+            button {
+                padding: 0;
+
+                a {
+                    width: 50px;
+                    line-height: 30px;
+                    display: block;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    &__write-button {
+        display: flex;
+        justify-content: end;
+    }
+}

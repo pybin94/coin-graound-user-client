@@ -1,0 +1,36 @@
+.breaking-alert {
+    position: fixed;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #2463eb, #00b5d4);
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    animation: smoothAppear2 1s;
+    
+    &:hover {
+        background-image: linear-gradient(to right, #3c73e9, #1bc9e8);
+    }
+
+    &__icon {
+        background-color: rgb(255 255 255 / 0.2);
+        border-radius: 100%;
+        max-width: 2rem;
+        min-width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 2rem;
+        animation: pulse 2s infinite;
+
+        svg {
+            width: 1.25rem;
+        }
+    }
+}

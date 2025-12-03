@@ -1,0 +1,25 @@
+.dashboard {
+    .section {
+        width: 100%;
+        margin-bottom: var(--distance);
+    }
+
+    &__premium {
+        width: 100%;
+    }
+
+    &__whale {
+        display: flex;
+        gap: var(--distance);
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+
+        &__whale {
+            flex-direction: column;
+        }
+    }
+}

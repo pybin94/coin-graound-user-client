@@ -1,0 +1,212 @@
+.pagenation {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 1rem;
+
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--card);
+        border-radius: var(--border-radius);
+        padding: 0.5rem;
+        border: var(--border);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--card-shadow);
+
+        li {
+            font-size: 0.9rem;
+            min-width: 2.5rem;
+            height: 2.5rem;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+              
+            &.active {
+                background:  var(--main-color);
+                box-shadow: 0px 0px 3px rgba(74, 144, 226, 0.4);
+
+                a {
+                    color: #fff;
+                    font-weight: 600;
+                }
+            }
+            
+            &.shift {
+                a {
+                    cursor: pointer;
+                    color: #aaa;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: var(--main-color);
+                        transform: scale(1.1);
+                    }
+
+                    &.active {
+                        color: var(--main-color);
+                    }
+
+                    i {
+                        font-size: 0.8rem;
+                        transition: all 0.3s ease;
+                    }
+                }
+
+                &:hover {
+                    background: rgba(74, 144, 226, 0.1);
+                    transform: translateY(-1px);
+                }
+            }
+            
+            &.page {
+                a {
+                    min-width: 2.5rem;
+                    height: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 8px;
+                    transition: all 0.3s ease;
+                    color: #e0e0e0;
+                    font-weight: 500;
+
+                    &:hover {
+                        color: var(--main-color);
+                        background: rgba(74, 144, 226, 0.1);
+                        transform: translateY(-1px);
+                        box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+                    }
+                }
+
+                &.active a {
+                    &:hover {
+                        color: #fff;
+                        background: linear-gradient(135deg, var(--main-color) 0%, #4a90e2 100%);
+                        transform: none;
+                        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+                    }
+                }
+            }
+              
+            &.first {
+                border-radius: 8px;
+            }
+              
+            &.last {
+                border-radius: 8px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                text-decoration: none;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
+    :global(.shift a.active) {
+        color: var(--main-color) !important;
+        cursor: pointer !important;
+    }
+}
+
+// 태블릿 반응형
+@media (max-width: 1024px) {
+    .pagenation {
+        margin: 1.5rem 0;
+        padding: 0.8rem;
+
+        ul {
+            gap: 0.4rem;
+            padding: 0.4rem;
+
+            li {
+                min-width: 2.2rem;
+                height: 2.2rem;
+                font-size: 0.85rem;
+
+                &.page a {
+                    min-width: 2.2rem;
+                    height: 2.2rem;
+                }
+
+                &.shift a i {
+                    font-size: 0.75rem;
+                }
+            }
+        }
+    }
+}
+
+// 모바일 반응형
+@media (max-width: 768px) {
+    .pagenation {
+        margin: 1rem 0;
+        padding: 0.5rem;
+
+        ul {
+            gap: 0.3rem;
+            padding: 0.3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            li {
+                min-width: 2rem;
+                height: 2rem;
+                font-size: 0.8rem;
+
+                &.page a {
+                    min-width: 2rem;
+                    height: 2rem;
+                }
+
+                &.shift a i {
+                    font-size: 0.7rem;
+                }
+
+                &:hover {
+                    transform: none; // 모바일에서는 transform 제거
+                }
+
+                &.page a:hover {
+                    transform: none;
+                }
+            }
+        }
+    }
+}
+
+// 작은 모바일 화면
+@media (max-width: 480px) {
+    .pagenation {
+        ul {
+            gap: 0.2rem;
+            padding: 0.2rem;
+
+            li {
+                min-width: 1.8rem;
+                height: 1.8rem;
+                font-size: 0.75rem;
+
+                &.page a {
+                    min-width: 1.8rem;
+                    height: 1.8rem;
+                }
+
+                &.shift a i {
+                    font-size: 0.65rem;
+                }
+            }
+        }
+    }
+}

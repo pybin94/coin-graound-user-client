@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+}
+
+.app-content {
+    margin-top: calc(80px + var(--distance));
+
+    &__body {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-content {
+        margin-top: calc(66px + var(--distance));
+    }
+}

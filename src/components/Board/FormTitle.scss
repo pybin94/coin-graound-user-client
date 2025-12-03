@@ -1,0 +1,43 @@
+
+.form-title {
+    border-top: 2px solid var(--main-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+
+    &__title {
+        font-size: 1.125rem;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__user {
+            &__level {
+                width: 20px;
+                height: 20px;
+                border-radius: 100px;
+                border: 1px solid var(main-color);
+            }
+        }
+
+        &__user,
+        &__post {
+            display: flex;
+            align-items: center;
+
+            p {
+                &::after {
+                    content: "|";
+                    margin: 0 0.5rem;
+                    color: #ccc;
+                }
+
+                &:last-child::after {
+                    content: "";
+                }
+            }
+        }
+    }
+}

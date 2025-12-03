@@ -1,0 +1,80 @@
+.board-list {
+    position: relative;
+
+    &:hover {
+        .board-list__thumbnail {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &__title {
+        text-align: left;
+        padding: 0 !important;
+
+        a {
+            padding: 0.5rem 0.6rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        &__image-icon {
+            margin-left: 0.25rem;
+        }
+
+        &:hover {
+            .board-list__title__text {
+                text-decoration: underline;
+            }
+        }
+
+        &__text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        &__comments {
+            width: 25px;
+            text-align: center;
+            color: #aaa;
+        }
+    }
+
+    td {
+        &:nth-child(5),
+        &:nth-child(6) {
+            width: 50px;
+        }
+        &:nth-child(1),
+        &:nth-child(3),
+        &:nth-child(4) {
+            width: 70px;
+        }
+    }
+
+    &__thumbnail {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 100;
+        overflow: hidden;
+        width: 75px;
+        height: 75px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+}
+
+:global(.board-list.active){
+    background-color: #e6eeff;
+}
+
+:global(.board-list__active-board){
+    color: #567bff;
+}
+
+:global(.board-list__thumbnail img:hover){
+    display: none;
+}

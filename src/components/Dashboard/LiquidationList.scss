@@ -1,0 +1,91 @@
+.liquidation-item {
+    background: var(--card);
+    border-radius: 6px;
+    padding: 6px 8px;
+    border: 1px solid var(--d-item-border);
+    transition: all 0.2s ease;
+    position: relative;
+
+    &.latest {
+        background: var(--d-item-latest-background);
+    }
+
+    &.latest-buy {
+        border-color: #f44336;
+        background: var(--d-item-latest-background);
+    }
+
+    &.latest-sell {
+        border-color: #4caf50;
+        background: var(--d-item-latest-background);
+    }
+
+    &:hover {
+        background: var(--d-border);
+        transform: translateY(-1px);
+    }
+
+    .main-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3px;
+
+        .symbol-price {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .symbol {
+                font-weight: 600;
+                font-size: 12px;
+                color: var(--font-color);
+            }
+
+            .price {
+                font-size: 10px;
+                color: var(--d-tx-hash);
+                font-weight: 500;
+            }
+        }
+
+        .amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ff6b6b;
+        }
+
+        .side {
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &.buy {
+                background: #4caf50;
+                color: white;
+            }
+
+            &.sell {
+                background: #f44336;
+                color: white;
+            }
+        }
+    }
+
+    .sub-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+
+        .quantity {
+            color: #999;
+        }
+
+        .time {
+            color: var(--d-empty-state);
+        }
+    }
+}

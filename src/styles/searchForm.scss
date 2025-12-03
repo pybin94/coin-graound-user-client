@@ -1,0 +1,211 @@
+.search-form {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    margin-bottom: var(--distance);
+    padding: 1.5rem;
+    background: var(--card);
+    border-radius: var(--border-radius);
+    border: var(--border);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--card-shadow);
+
+    select {
+        min-width: 75px;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius:8px;
+        background: var(--card);
+        color: #e0e0e0;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+
+        &:hover {
+            border-color: var(--main-color);
+            background: rgba(74, 144, 226, 0.1);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--main-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+
+        option {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+    }
+
+    &__search {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        flex: 0 0 auto;
+
+        label {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        &__wrap {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+
+            &:hover {
+                border-color: var(--main-color);
+                background: rgba(74, 144, 226, 0.05);
+            }
+
+            &:focus-within {
+                border-color: var(--main-color);
+                box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+            }
+
+            input {
+                flex: 1;
+                padding: 0.8rem 1rem;
+                border: none;
+                background: transparent;
+                color: #e0e0e0;
+                font-size: 0.9rem;
+                outline: none;
+
+                &::placeholder {
+                    color: #888;
+                }
+            }
+
+            &__button {
+                padding: 0.8rem 1.2rem;
+                background: var(--main-color);
+                border: none;
+                color: #fff;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+                border-radius: 0;
+
+                &:hover {
+                    background: linear-gradient(135deg, #4a90e2 0%, var(--main-color) 100%);
+                    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+}
+
+// 태블릿 반응형
+@media (max-width: 1024px) {
+    .search-form {
+        padding: 1.2rem;
+        gap: 0.8rem;
+
+        select {
+            min-width: 100px;
+            padding: 0.7rem 0.8rem;
+        }
+
+        &__search {
+            label {
+                font-size: 0.85rem;
+                margin-right: 0.8rem;
+            }
+
+            &__wrap {
+                width: 280px;
+
+                input {
+                    padding: 0.7rem 0.8rem;
+                }
+
+                &__button {
+                    padding: 0.7rem 1rem;
+                }
+            }
+        }
+    }
+}
+
+// 모바일 반응형
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem;
+
+        select {
+            width: 100%;
+            min-width: auto;
+        }
+
+        &__search {
+            margin-left: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+
+            label {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+
+            &__wrap {
+                width: 100%;
+                max-width: none;
+            }
+        }
+    }
+}
+
+// 작은 모바일 화면
+@media (max-width: 480px) {
+    .search-form {
+        padding: 0.8rem;
+        gap: 0.8rem;
+
+        select {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        &__search {
+            label {
+                font-size: 0.8rem;
+            }
+
+            &__wrap {
+                width: 100%;
+
+                input {
+                    padding: 0.6rem 0.8rem;
+                    font-size: 0.85rem;
+                }
+
+                &__button {
+                    padding: 0.6rem 0.8rem;
+                    font-size: 0.85rem;
+                }
+            }
+        }
+    }
+}

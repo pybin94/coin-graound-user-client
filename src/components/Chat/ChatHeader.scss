@@ -1,0 +1,13 @@
+.chat-header {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__full-screen {
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,54 @@
+.edit {
+    &__title {
+        margin-bottom: var(--margin);
+
+        input {
+            padding: 13px 16px 11px;
+            font-size: 1.125rem;
+
+            &::-webkit-input-placeholder {
+                font-size: 1.125rem;
+                font-weight: 500;
+            }
+            &::-webkit-ms-input-placeholder {
+                font-size: 1.125rem;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin-top: var(--margin);
+
+        button {
+            margin-left: var(--margin);
+        }
+    }
+}
+
+:global(.description) {
+    margin-bottom: 1rem;
+}
+
+:global(.description-lable) {
+    margin-bottom: 0.5rem;
+}
+
+:global(.banner-picture) {
+    margin-bottom: 1rem;
+}
+
+:global(.banner-picture-lable) {
+    margin: 1rem 0;
+}
+
+:global(.banner-picture-lable > label) {
+    font-size: 1.2rem;
+}
+
+:global(.banner-picture-lable img) {
+    width: 250px;
+}

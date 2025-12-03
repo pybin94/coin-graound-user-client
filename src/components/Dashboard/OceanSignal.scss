@@ -1,0 +1,63 @@
+
+.ocean-signal-item {
+    background: var(--card);
+    border-radius: 6px;
+    padding: 6px 8px;
+    border: 1px solid var(--d-item-border);
+    transition: all 0.2s ease;
+    position: relative;
+
+    &.latest {
+        background: var(--d-item-latest-background);
+        border-color: #4a90e2;
+    }
+
+    &:hover {
+        background: var(--d-border);
+        transform: translateY(-1px);
+    }
+
+    .main-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3px;
+
+        .amount-info {
+            .amount {
+                font-size: 14px;
+                font-weight: 700;
+                color: #4a90e2;
+            }
+        }
+
+        .time {
+            font-size: 10px;
+            color: var(--d-empty-state);
+        }
+    }
+
+    .sub-row {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 10px;
+
+        .tx-hash {
+            color: var(--d-tx-hash);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: #4a90e2;
+            }
+
+            i {
+                font-size: 8px;
+            }
+        }
+    }
+}

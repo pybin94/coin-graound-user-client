@@ -1,0 +1,123 @@
+.view-form {
+    padding: 3rem 0;
+
+    &__recommend {
+        width: fit-content;
+        display: flex;
+        margin: 3rem auto 0;
+        flex-direction: column;
+        border: 1px solid var(--border-color);
+
+        &__box {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+
+            &__count {
+                margin: 0 1rem;
+                text-align: center;
+                width: 2rem;
+                font-size: 1.2rem;
+                font-weight: 500;
+
+                &.like {
+                    color: var(--red);
+                }
+            }
+
+            &__like,
+            &__dislike {
+                width: 60px;
+                height: 60px;
+                border-radius: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: #fff;
+                margin: 0 0.5rem;
+                font-size: 1rem;
+                cursor: pointer;
+
+                i {
+                    font-size: 1.5rem;
+                }
+            }
+
+            &__like {
+                background-color: var(--main-color);
+            }
+
+            &__dislike {
+                background-color: #ccc;
+            }
+        }
+
+        &__button-box {
+            display: flex;
+
+            &__share,
+            &__declaration {
+                text-align: center;
+                padding: 0.5rem;
+                width: 50%;
+                border-top: 1px solid var(--border-color);
+                background-color: #f3f3f3;
+                color: #999;
+                cursor: pointer;
+
+                &:first-child {
+                    border-right: 1px solid var(--border-color);
+                }
+
+                i {
+                    font-size: 1rem;
+                    margin-right: 0.25rem;
+                }
+            }
+        }
+    }
+}
+
+:global(.image-modal-cover) {
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #00000040;
+}
+
+:global(.image-modal) {
+    z-index: 300;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    background: #fff;
+    padding: 3rem;
+    border-radius: var(--border-radius);
+}
+
+:global(.image-modal button) {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 1.5rem;
+}
+
+:global(.image-modal img) {
+    width: -webkit-fill-available;
+    max-height: 60vw;
+}
+
+
+:global(.view-form img) {
+    cursor: pointer;
+}

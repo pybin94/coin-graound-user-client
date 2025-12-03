@@ -1,0 +1,42 @@
+.chart {
+    display: flex;
+    gap: var(--distance);
+    
+    &__info {
+        width: 100%;
+    }
+
+    &__list-btn {
+        display: none;
+        cursor: pointer;
+        position: fixed;
+        z-index: 300;
+        text-align: center;
+        font-size: 16px;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--main-color);
+        bottom: 33px;
+        right: 33px;
+        background-color: #171717;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+    }
+}
+
+@media (max-width: 978px) {
+    .chart {
+        &__list-btn {
+            display: block;
+            bottom: 68px;
+            right: 22px;
+        }
+    }
+}
