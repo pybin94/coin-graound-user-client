@@ -16,7 +16,7 @@
                     {#each JSON.parse(item.images) as image}
                         <a href={`/src/assets/images/${image}`} target="_blank" rel="noopener noreferrer">
                             <div class="news-list__article__image {item.images && JSON.parse(item.images).length === 1 ? 'single' : 'multiple'}">
-                                <img src={`/src/assets/images/${image}`} alt="postId">
+                                <img src={`/src/assets/uploads/news/${image}`} alt="postId">
                             </div>
                         </a>
                     {/each}
