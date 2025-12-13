@@ -70,4 +70,5 @@
 
 <style lang="scss">
     @use "./NewsList.scss";
+    @use "../../styles/animation.scss";
 </style>

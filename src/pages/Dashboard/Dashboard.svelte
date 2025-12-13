@@ -85,10 +85,6 @@
     <div class="dashboard__calculate section">
         <Calculate />
     </div>
-    <!-- <Notice />
-    <div class="dashboard__contents">
-        <Content tableList={freeList} title={"자유게시판"} />
-    </div> -->
 </div>
 
 <style lang="scss">

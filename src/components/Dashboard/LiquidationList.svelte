@@ -60,9 +60,12 @@
                 </div>
             {/each}
         {:else}
-            <div class="empty-state">
-                <p>청산 데이터가 없습니다</p>
-            </div>
+            {#each Array(3) as _}
+                <div class="whale-container__empty-state">
+                    <div class="whale-container__empty-state__text" style="width:90%"></div>
+                    <div class="whale-container__empty-state__text" style="width:80%"></div>
+                </div>
+            {/each}
         {/if}
     </div>
 </section>
@@ -70,4 +73,5 @@
 <style lang="scss">
     @use "./whaleContainer.scss";
     @use "./LiquidationList.scss";
+    @use "../../styles/animation.scss";
 </style>

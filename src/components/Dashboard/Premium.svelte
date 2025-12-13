@@ -340,7 +340,7 @@
                 <div class="price-row">
                     <span class="coin">MVRV-Z</span>
                     <span class="price">
-                        {marketIndicator.MVRVZScore}
+                        {marketIndicator.MVRVZScore ? marketIndicator.MVRVZScore : 0}
                     </span>
                     <span class="change" class:positive={mvrvz24H > 0} class:negative={mvrvz24H < 0}>
                         {mvrvz24H}%

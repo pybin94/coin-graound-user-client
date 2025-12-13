@@ -9,7 +9,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-
+    
     &__header {
         display: flex;
         justify-content: space-between;
@@ -74,13 +74,38 @@
     }
 
     &__empty-state {
+        height: 48.5px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100px;
-        color: var(--d-empty-state);
-        font-size: 12px;
+        flex-direction: column;
+        gap: 6px;
+
+        background: linear-gradient(
+            90deg,
+            var(--card) 0%,
+            var(--d-background), 3%,
+            var(--card) 4%
+        );
+
+        background-size: 200% 100%;
+        animation: skeleton-shimmer 4s linear infinite;
+        border-radius: 6px;
+        padding: 6px 8px;
+        border: 1px solid var(--d-item-border);
+
+        &__text {
+            height: 16px;
+            border-radius: 2px;
+            background: linear-gradient(
+            90deg,
+            var(--d-background) 0%,
+            var(--border-color), 3%,
+            var(--d-background) 10%
+            );
+            background-size: 200% 100%;
+            animation: skeleton-shimmer 4s linear infinite;
+        }
     }
+
 }
 
 @media (max-width: 978px) {

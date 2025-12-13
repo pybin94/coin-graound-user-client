@@ -199,17 +199,12 @@ export const boardDateFormat = (dateString: string | Date) => {
     const setDate = new Date(dateString);
 
     const nowYear = nowData.getFullYear();
-    const setYear = setDate.getFullYear();
     const nowMonth = nowData.getMonth() + 1;
     const setMonth = setDate.getMonth() + 1;
     const nowDay = nowData.getDate();
     const setDay = setDate.getDate();
-    const nowHours = nowData.getHours();
     const setHours = setDate.getHours();
-    const nowMinutes = nowData.getMinutes();
     const setMinutes = setDate.getMinutes();
-    const nowSeconds = nowData.getSeconds();
-    const setSeconds = setDate.getSeconds();
 
     const nowLocalDateString = `${nowYear}-${String(nowMonth).padStart(2, '0')}-${String(nowDay).padStart(2, '0')}`;
     const setLocalDateString = `${nowYear}-${String(setMonth).padStart(2, '0')}-${String(setDay).padStart(2, '0')}`;

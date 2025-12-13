@@ -58,7 +58,7 @@
   --d-item-border: #e0e0e0;
   --d-item-latest-background: linear-gradient(135deg, #f8f9fa 0%, #f0f4ff 100%);
   --d-tx-hash: #666;
-  --d-empty-state: #999;
+  --d-time-state: #999;
 
   --page-width: 800px; 
 
@@ -100,7 +100,7 @@
     --d-item-border: #333;
     --d-item-latest-background: linear-gradient(135deg, #222 0%, #1a1a2a 100%);
     --d-tx-hash: #ccc;
-    --d-empty-state: #666;
+    --d-time-state: #666;
 }
 
 ::-webkit-scrollbar-track {
