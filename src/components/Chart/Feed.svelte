@@ -144,7 +144,7 @@
             return popup(response.message, response.statusCode)
         });
     }
-
+    
     onMount(() => {
         document.addEventListener('click', handleClickOutside);
     });
@@ -174,8 +174,8 @@
         </div>
         {#if feedList.length > 0}
             <div class="feed__sort-button">
-                <button on:click={()=>{handleGetFeed("like")}} class:line={sort == "like"} class="dark">인기순</button>
-                <button on:click={()=>{handleGetFeed("createdAt")}} class:line={sort == "createdAt"} class="dark">최신순</button>
+                <button on:click={()=>{handleGetFeed("like")}} class:line={sort == "createdAt"} class="dark">인기순</button>
+                <button on:click={()=>{handleGetFeed("createdAt")}} class:line={sort == "like"} class="dark">최신순</button>
             </div>
             {#each feedList as item, index}
                 <li class="feed__body__list">

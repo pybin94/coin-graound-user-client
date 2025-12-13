@@ -88,7 +88,7 @@
 
 :global(button.dark) {
   background: var(--dark-color);
-  border: 1px solid var(--dark-color);
+  border: 1px solid #00000000;
   color: var(--font-color);
 }
 

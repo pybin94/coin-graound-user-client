@@ -301,10 +301,10 @@ export const setParams = (paramName: string, data: string) => {
     window.history.pushState({}, '', url);
 }
 
-export const timeAgo = (inputDate: string) => {
-    const now = new Date();
-    const past = new Date(inputDate);
-    const diff = now.getTime() - past.getTime();
+export const timeAgo = (inputDate: string, now: number = Date.now()) => {
+
+    const past = new Date(inputDate).getTime();
+    const diff = now - past;
 
     const units = [
         { label: '년', millis: 1000 * 60 * 60 * 24 * 365 },

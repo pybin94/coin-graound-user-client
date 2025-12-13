@@ -1,10 +1,25 @@
 <script lang="ts">
     import { type NewsModel } from "models/news";
+    import { onDestroy, onMount } from "svelte";
     import { timeAgo } from "utils/helpers";
 
     export let newsList: Array<NewsModel>;
     export let buttonVisible: boolean;
     export let hendleGetNewsList: any
+
+    let now = Date.now();
+    let timer: any;
+
+    onMount(() => {
+        timer = setInterval(() => {
+            now = Date.now();
+        }, 60000);
+    });
+
+    onDestroy(() => {
+        clearInterval(timer);
+    });
+
 </script>
 
 <div class="news-list">
@@ -26,7 +41,7 @@
                     <p class="news-list__article__contents__text">{@html item.text}</p>
                     <div class="news-list__article__contents__time-ago">
                         <i class="fa-regular fa-clock"></i>
-                        <span>{timeAgo(item.createdAt)}</span>
+                        <span>{timeAgo(item.createdAt, now)}</span>
                     </div>
                 </div>
             </article>
