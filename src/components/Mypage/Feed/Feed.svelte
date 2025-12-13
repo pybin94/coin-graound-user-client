@@ -15,7 +15,8 @@
         handleGetMyFeed()
     }
 
-    const handleGetMyFeed = async () => {
+    const handleGetMyFeed = async  (setPage?: number) => {
+        if(setPage) currentPage = setPage;
 
         offset = limit * (currentPage-1);
 
