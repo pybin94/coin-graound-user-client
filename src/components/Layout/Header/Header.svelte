@@ -1,13 +1,12 @@
 <script lang="ts">
     import { menus } from "constants/layout";
     import { type ExchangeRateDataModel } from "models/exchangeRate";
-    import { currentUrl, userInfo, nightMode, usDollerPrice, currentIndex } from "stores/store";
+    import { userInfo, nightMode, usDollerPrice, currentIndex } from "stores/store";
     import { onDestroy, onMount } from "svelte";
     import { link } from "svelte-routing"
-    import { getCookie, reload, setCookie } from "utils/helpers";
+    import { getCookie, setCookie } from "utils/helpers";
 
     let header: HTMLHeadElement;
-    let lastPathname: string = "";
     let exchangeRateData: ExchangeRateDataModel;
     let exchangeRateList = ["USD/KRW", "USDINDEX", "KOSPI", "NASDAQ", "S&P500"]
     
@@ -28,8 +27,6 @@
         eventSource.onerror = () => {
             console.log("SSE connection error.");
         };
-
-        menuHighlight();
     }
 
     // 슬라이드 기능 초기화
@@ -60,24 +57,24 @@
         }
     }
 
-    const menuHighlight = () => {
-        const currentPath = window.location.pathname;
+    // const menuHighlight = () => {
+    //     const currentPath = window.location.pathname;
         
-        if (currentPath !== lastPathname) {
-            lastPathname = currentPath;
+    //     if (currentPath !== lastPathname) {
+    //         lastPathname = currentPath;
             
-            currentIndex.set(0);
+    //         currentIndex.set(0);
             
-            for(let i = 0; i < menus.length; i++) {
-                if(currentPath === menus[i].url) {
-                    currentIndex.set(i);
-                    break;
-                }
-            }
+    //         for(let i = 0; i < menus.length; i++) {
+    //             if(currentPath === menus[i].url) {
+    //                 currentIndex.set(i);
+    //                 break;
+    //             }
+    //         }
             
-            currentUrl.set(currentPath);
-        }
-    }
+    //         currentUrl.set(currentPath);
+    //     }
+    // }
     
     let eventSource: EventSource | null = null;
 
@@ -102,16 +99,6 @@
         stopSlideInterval();
     })
     
-    // const setHeaderPosition = () => {
-    //     const element = document.querySelector("html")
-    //     if(element.offsetWidth < 768 && element.scrollTop > 60) {
-    //         header?.classList.add("header-hide");
-    //         headerSub?.classList.add("sub-fiexd");
-    //     } else {
-    //         header?.classList.remove("header-hide");
-    //         headerSub?.classList.remove("sub-fiexd");
-    //     }
-    // }
     const handleNightMode = ():void => {
         if (!getCookie("nightMode") || getCookie("nightMode") == "off") {
             setCookie("nightMode", "on")
@@ -127,11 +114,6 @@
         if (name == "USDINDEX") return "USD INDEX";
         if (name == "S&P500") return "S&P 500";
         return name;
-    }
-
-    // currentUrl store 변경 시 메뉴 하이라이트 업데이트
-    $: if ($currentUrl) {
-        menuHighlight();
     }
 </script>
 
@@ -215,12 +197,16 @@
                 {/if}
             </button>
             {#if $userInfo}
-                <a class="header__right__icon" use:link href="/mypage">
-                    <button class="line">내정보</button>
+                <a class="header__right__myinfo" use:link href="/mypage/profile" on:click={()=>{$currentIndex = -1}}>
+                    {#if JSON.parse($userInfo)["picture"]}
+                        <img src={JSON.parse($userInfo)["picture"]} alt="프로필 이미지">
+                    {:else}
+                        <img src="/src/assets/uploads/profile/none{JSON.parse($userInfo)["id"] % 5}.png" alt="프로필 이미지">
+                    {/if}
                 </a>
             {:else}
-                <a use:link href="/joinin">
-                    <button  class="line">로그인</button>
+                <a class="header__right__joinin" use:link href="/joinin" on:click={()=>{$currentIndex = -1}}>
+                    <i class="fa-solid fa-user"></i>
                 </a>
             {/if}
         </div>

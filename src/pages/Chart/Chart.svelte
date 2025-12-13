@@ -10,6 +10,7 @@
     import { onDestroy } from "svelte";
     import { chartSort, chartSortOrder, chartSortTarget } from "stores/store";
     import { get } from "svelte/store";
+    import Modal from "utils/Modal.svelte";
 
     let symbolInfo: SymbolInfo = {id: 1, kr: "비트코인", en: "Bitcoin", s: "BTC", cu: null, ef: null, p: null};
     let ws: WebSocket;
@@ -50,7 +51,7 @@
                 response = await got({
                     urlParams: `/coin/coin-exchange${urlQuery}`,
                 });
-                setLs(`exchange${urlParams("exchange")}`, JSON.stringify(response.data))
+                setLs(`exchange${urlParams("exchange")}`, JSON.stringify(response.data), 3600)
             }
 
             if (exchangeData || response.statusCode === 1) {
@@ -212,8 +213,6 @@
         }
     }
 
-    init()
-
     onDestroy(() => {
         if (ws) ws.close();
         if (wsUnsubscribe) wsUnsubscribe();
@@ -224,6 +223,7 @@
         }
     });
 
+    init()
     $: filteredTickers = Object.values(tickers).filter(ticker => 
         ticker.s?.toUpperCase() === symbolInfo.s.toUpperCase()
     );
@@ -235,7 +235,7 @@
     <div class="chart__info">
         <CoinInfo {symbolInfo} {ticker}/>
         <TradingView {symbolInfo}/>
-        <Feed {symbolInfo} {ticker}/>
+        <Feed {symbolInfo} {ticker} />
     </div>
     <CoinList 
         {getSymbolInfo} 

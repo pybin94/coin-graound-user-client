@@ -1,33 +1,7 @@
 <script lang="ts">
     import { menus } from "constants/layout";
-    import { currentIndex, currentUrl } from "stores/store";
-    import { onMount } from "svelte";
+    import { currentIndex } from "stores/store";
     import { link } from "svelte-routing"
-    import { reload } from "utils/helpers";
-
-    let lastPathname: string = "";
-
-    const menuHighlight = () => {
-        const currentPath = window.location.pathname;
-        
-        if (currentPath !== lastPathname) {
-            lastPathname = currentPath;
-            
-            currentIndex.set(0);
-            
-            for(let i = 0; i < menus.length; i++) {
-                if(currentPath === menus[i].url) {
-                    currentIndex.set(i);
-                    console.log($currentIndex)
-                    break;
-                }
-            }
-            
-            currentUrl.set(currentPath);
-        }
-    }
-
-    menuHighlight();
 
 </script>
 

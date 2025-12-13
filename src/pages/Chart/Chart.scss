@@ -1,4 +1,5 @@
 .chart {
+    position: relative;
     display: flex;
     gap: var(--distance);
     
@@ -27,7 +28,20 @@
         &:hover {
             transform: scale(1.1);
         }
+    }
 
+    &__report-type {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        &__list {
+            position: fixed;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
 

@@ -226,6 +226,10 @@ $fourth: 75px;
             }
         }
     }
+
+    &__list:last-child {
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
 }
 
 .order-button {
@@ -261,10 +265,12 @@ $fourth: 75px;
     .coin {
         display: none;
         position: fixed;
-        right: -380px;
+        top: 0;
+        right: -100%;
         height: 100%;
         z-index: 200;
         width: 100%;
+        transition: opacity, right 0.2s ease-out;
 
         &__list-wrap {
             max-height: 100%;

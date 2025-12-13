@@ -1,10 +1,18 @@
 <script lang="ts">
     import BreakingAlert from "components/News/BreakingAlert.svelte";
-    import NewsHeader from "components/News/NewsHeader.svelte";
     import NewsList from "components/News/NewsList.svelte";
     import { type NewsModel } from "models/news";
     import { onDestroy, onMount } from "svelte";
-    import { got, timeAgo } from "utils/helpers";
+    import { got } from "utils/helpers";
+    import MenuHeader from "components/Layout/MenuHeader/MenuHeader.svelte";
+    import { type MenuHeaderModel } from "models/layout";
+
+    const menuHeader: MenuHeaderModel = {
+        icon: "fa-solid fa-arrow-trend-up",
+        title: "코인 속보",
+        subTitle: "실시간 암호화폐 뉴스",
+        extraHTML: `<i class="fa-regular fa-clock"></i><p>실시간 업데이트</p>`,
+    }
 
     let evt: EventSource | null = null;
     let seeNews: Array<NewsModel>  = [];
@@ -111,10 +119,9 @@
 </script>
 
 <main class="news content">
-    <NewsHeader />
+    <MenuHeader {menuHeader} />
     <BreakingAlert {breakingAlertCheck} {handleScrollTop} />
     <NewsList {newsList} {buttonVisible} {hendleGetNewsList} />
-  
 </main>
 
 <style lang="scss">

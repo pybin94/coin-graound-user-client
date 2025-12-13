@@ -8,7 +8,9 @@ interface UserInfo {
 }
 
 export const getUserInfo = async (): Promise<any> => {
-    const response = await got("/user");
+    const response = await got({
+        urlParams: "/user",
+    });
     if(response.statusCode == 1) {
         return response.data;
     };

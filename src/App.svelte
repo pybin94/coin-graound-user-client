@@ -11,9 +11,12 @@
     import BoardWriter from "pages/Board/BoardWriter.svelte";
     import Reload from "pages/Reload.svelte";
     import None from "pages/None.svelte";
-    import Profile from "pages/Profile/Profile.svelte";
+    import Profile from "components/Mypage/Profile/Profile.svelte";
     import Chart from "pages/Chart/Chart.svelte";
     import News from "pages/News/News.svelte";
+    import Posts from "components/Mypage/Posts/Posts.svelte";
+    import Feed from "components/Mypage/Feed/Feed.svelte";
+    import Promotion from "pages/Promotion/Promotion.svelte";
 
     const init = () => {
         document.title = process.env.SITENAME;
@@ -33,14 +36,15 @@
     <Route path="/*"><NotFound /></Route>
     <Layout>
         <Route path="/"><Dashboard /></Route>
-        <!-- Board -->
         <Route path="/board"><Board /></Route>
-        <!-- Board End -->
+        <Route path="/promotion"><Promotion /></Route>
         <Route path="/chart"><Chart /></Route>
         <Route path="/news"><News /></Route>
         <Route path="/write/*" ><BoardWriter /></Route>
         <Route path="/chat"><None /></Route>
-        <Route path="/mypage"><Profile /></Route>
+        <Route path="/mypage/profile"><Profile /></Route>
+        <Route path="/mypage/feeds"><Feed /></Route>
+        <Route path="/mypage/posts"><Posts /></Route>
         <Route path="/reload"><Reload /></Route>
         <Route path="/test"><Test /></Route>
     </Layout>

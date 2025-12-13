@@ -1,5 +1,6 @@
 <script lang="ts">
     import MyPage from "pages/MyPage/MyPage.svelte";
+    import { handleJoinout } from "services/join";
     import { getUserInfo } from "services/userInfo";
     import { currentSubtitle, currentTitle } from "stores/store";
     import { got } from "utils/helpers";
@@ -45,7 +46,7 @@
 
 </script>
 <MyPage>
-    <form class="profile mypage content" on:submit|preventDefault={updateuserInfo}>
+    <form class="profile content" on:submit|preventDefault={updateuserInfo}>
         {#if userInfo}
             <label class="profile__picture-lable" for="picture">
                 <div class="profile__picture-lable__img-wrap">
@@ -68,14 +69,27 @@
                 accept="image/*"
                 bind:files={pictures}
             >
-            <label for="">닉네임</label>
-            <input 
-                class="profile__nickanme"
+            <div class="profile__nickanme">
+                <label for="nickname" class="profile__nickanme__label">닉네임</label>
+                <input 
+                id="nickname"
+                class="profile__nickanme__input"
                 type="text"
                 bind:value={nickname}
                 placeholder="닉네임"
-            >
+                >
+            </div>
             <button class="profile__submit" type="submit">수정</button>
+
+            <button
+                class="profile__joinout unset"
+                type="button"
+                tabindex="0"
+                on:click={handleJoinout}
+                on:keypress={handleJoinout}
+            >
+                로그아웃
+            </button>
         {/if}
     </form>
 </MyPage>

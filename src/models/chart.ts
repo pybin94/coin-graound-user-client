@@ -41,8 +41,6 @@ export interface TickerInfo extends SymbolInfo {
     its: boolean; // 거래 정지 여부
     dd: Date; // 거래지원 종료일
 
-
-
     tms: number; // 타임스탬프 (milliseconds)
     st: "SNAPSHOT" | "REALTIME"; // 스트림 타입
 
@@ -118,4 +116,10 @@ export interface BinanceTicker {
     v: string;  // 24시간 내 총 체결량
     w: string;  // 24시간 내 평균 가격
     x: string;  // 직전 체결 가격
+}
+
+export interface CoinModel {
+    symbol: string;
+    koreanName: string;
+    englishName: string;
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-    export let title: string; 
     export let visible: boolean;
     export let handleVisible: Function;
 
@@ -48,17 +47,9 @@
             on:keypress={handleOutro}
         ></div>
         <div 
-            class="modal__contents" class:inactive={animation === false}
-        >   
-            <div class="modal__contents__header">{title}
-                <i class="fa-solid fa-xmark modal__contents__header__close"
-                    on:click={handleOutro}
-                    on:keypress={handleOutro}
-                ></i>
-            </div>
-            <div class="modal__contents__content">
-                <slot />
-            </div>
+            class="modal__content" class:inactive={animation === false}
+        >
+            <slot />
         </div>
     </div>
 {/if}

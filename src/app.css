@@ -60,6 +60,8 @@
   --d-tx-hash: #666;
   --d-empty-state: #999;
 
+  --page-width: 800px; 
+
 }
 
 .light {

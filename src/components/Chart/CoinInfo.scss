@@ -1,6 +1,7 @@
 .coin-info {
     margin-bottom: var(--distance);
     height: 138px;
+    min-height: 74px;
 
     &__header {
         display: flex;
@@ -9,7 +10,8 @@
         border-bottom: 1px solid var(--border-color);
 
         &__icon {
-            width: 30px;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 4px;
             margin-right: 0.5rem;
         }
@@ -90,10 +92,6 @@
 
         &__header {
             border: none;
-            // padding: var(--padding) 0 var(--padding) 0;
-            &__icon {
-                width: 20px;
-            }
     
             &__name {
                 font-size: 1.2rem;

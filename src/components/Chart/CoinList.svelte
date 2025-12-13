@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Exchange, type SymbolInfo, TickerMarketWarning, type TickerInfo } from "models/chart";
     import { formatDollar, moneyFormat, setParams, urlParams } from "utils/helpers";
+    import { popup } from "utils/popup";
 
     export let getSymbolInfo: Function;
     export let tickers: Record<string, TickerInfo> = {};
@@ -17,9 +18,9 @@
         {name: "빗썸", icon: "bithumb", id: Exchange.BITHUMB, status: "SPOT"},
         {name: "바이낸스", icon: "binance", id: Exchange.BINANCE, status: "SPOT"},
         {name: "바이낸스 선물", icon: "binance", id: Exchange.BINANCEF, status: "FUTURE"},
-        {name: "바이비트", icon: "bybit", id: Exchange.BYBIT, status: "FUTURE"},
-        {name: "OKX", icon: "okx", id: Exchange.OKX, status: "FUTURE"},
-        {name: "비트겟", icon: "bitget", id: Exchange.BITGET, status: "FUTURE"},
+        {name: "바이비트", icon: "bybit", id: Exchange.BYBIT, status: undefined},
+        {name: "OKX", icon: "okx", id: Exchange.OKX, status: undefined},
+        {name: "비트겟", icon: "bitget", id: Exchange.BITGET, status: undefined},
     ]
     
     let exchangeId = urlParams("exchange");
@@ -32,8 +33,8 @@
     );
 
     const changeExchange = (e: any, exchange: Exchange) =>{
+        document.querySelector("#coinList").scrollTo({ top: 0 }); 
         exchangeId = exchange
-
         resetOrderButton(true);
         setParams('exchange', exchange)
         setParams('symbol', "BTC")
@@ -66,6 +67,9 @@
                 class="coin__exchange__list unset {item.status}" 
                 class:active={exchangeId == item.id} 
                 on:click={(e)=>{
+                    if(!item.status) {
+                        return popup("준비중입니다.", 0)
+                    }
                     if(exchangeId != item.id) {
                         changeExchange(e, item.id);
                         getExchanges();
@@ -95,7 +99,7 @@
             </div>
         </button>
     </div>
-    <ul class="coin__list-wrap">
+    <ul id="coinList" class="coin__list-wrap">
         {#each Object.entries(filteredTickers) as [market, price]}
             <li 
                 class="coin__list {price.tc}"

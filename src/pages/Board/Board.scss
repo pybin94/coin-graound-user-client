@@ -1,4 +1,7 @@
 .board {
+    max-width: var(--page-width);
+    margin: 0 auto;
+
     &__form {
         margin-bottom: 3rem;
 

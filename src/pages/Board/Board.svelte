@@ -14,7 +14,15 @@
     import FormTitle from "components/Board/FormTitle.svelte";
     import { onMount } from "svelte";
     import { handleGetPost, updateViewCount } from "services/board";
+    import MenuHeader from "components/Layout/MenuHeader/MenuHeader.svelte";
+    import { type MenuHeaderModel } from "models/layout";
 
+    const menuHeader: MenuHeaderModel = {
+        icon: "fa-solid fa-headphones",
+        title: "그라운드",
+        subTitle: "고수들의 투자 인사이트",
+    }
+    
     let currentPage: number = 1;
     let limit: number = 20;
     let offset: number = limit * currentPage-1;
@@ -110,6 +118,7 @@
     </article>
     {/if}
     <div class="box">
+        <MenuHeader {menuHeader} />
         <SearchForm {handleGetList} {searchForm} />
         <Table tableTitle={boardTitle} {tableList} >
             <BoardList {tableList} {handleSetPost} {boardName}/>

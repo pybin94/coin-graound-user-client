@@ -15,6 +15,7 @@
     
     export let radioList: Array<any>;
     export let handleRadioValue: any;
+    export let setIndex = 0;
 </script>
 
 <div class="radio-inputs">
@@ -23,7 +24,7 @@
             <input 
                 type="radio" 
                 name="radio" 
-                checked={index == 0 ? true : false} 
+                checked={setIndex == index ? true : index == 0 ? true : false} 
                 on:click={()=>{handleRadioValue(index)}}
             >
             <span class="radio-inputs__radio__name">{item}</span>

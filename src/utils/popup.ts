@@ -207,7 +207,7 @@ const startAutoCloseTimer = (popupId: string): void => {
 
     popupInstance.timer = setTimeout(() => {
         popupCloseById(popupId, false);
-    }, 30000);
+    }, 5000);
 }
 
 const pauseAutoCloseTimer = (popupId: string): void => {

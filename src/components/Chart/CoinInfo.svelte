@@ -1,6 +1,6 @@
 <script lang="ts">
     import { type SymbolInfo, type TickerInfo } from "models/chart";
-    import { moneyFormat, urlParams } from "utils/helpers";
+    import { handleError, moneyFormat, urlParams } from "utils/helpers";
 
     export let symbolInfo: SymbolInfo;
     export let ticker: TickerInfo;
@@ -10,7 +10,12 @@
 <div class="coin-info card">
     {#if ticker}
         <div class="coin-info__header">
-            <img class="coin-info__header__icon" src="https://s3-symbol-logo.tradingview.com/crypto/XTVC{ticker?.ef ? ticker.ef : symbolInfo.s}--big.svg" alt="">
+            <img 
+                class="coin-info__header__icon" 
+                src="https://s3-symbol-logo.tradingview.com/crypto/XTVC{symbolInfo.s}--big.svg" 
+                alt="{symbolInfo.s} 아이콘"
+                on:error={handleError}
+            >
             <p class="coin-info__header__name">
                 {#if ticker.kr}
                     {ticker.kr}

@@ -31,4 +31,9 @@ export const menus: Array<Menus> = [
         url: "/board",
         icon: "fa-solid fa-clapperboard",
     }, 
+    {
+        title: "프로모션", 
+        url: "/promotion",
+        icon: "fa-solid fa-money-bill-wave",
+    }, 
 ];
