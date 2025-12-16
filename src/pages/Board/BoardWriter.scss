@@ -1,10 +1,14 @@
 .edit {
+    width: var(--page-width);
+    margin: 0 auto;
+    
     &__title {
         margin-bottom: var(--margin);
 
-        input {
+        &__input {
             padding: 13px 16px 11px;
             font-size: 1.125rem;
+            border: 1px solid var(--main-color);
 
             &::-webkit-input-placeholder {
                 font-size: 1.125rem;

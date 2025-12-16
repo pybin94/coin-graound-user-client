@@ -3,11 +3,10 @@
     import BoardList from "components/Board/BoardList.svelte";
     import { boardTitle, type Post } from "constants/board";
     import { currentUrl, userInfo, postParams, writeBoard } from "stores/store";
-    // import { navigate } from "svelte-routing/src/history";
     import Pagenation from "utils/Pagenation.svelte";
     import SearchForm from "utils/SearchForm.svelte";
     import Table from "utils/Table.svelte";
-    import { link } from "svelte-routing";
+    import { link, navigate } from "svelte-routing";
     import { got, urlParams } from "utils/helpers";
     import { popup } from "utils/popup";
     import CommentForm from "components/Board/CommentForm.svelte";
@@ -84,7 +83,7 @@
             if(response.data.total !== 0) {
                 fullPage = Math.ceil(response.data.total / limit);
             };
-        } else if(response.status == 0){
+        } else if(response.statusCode == 0){
             popup(response.message, response.statusCode)
         }
     }
@@ -117,27 +116,25 @@
         <CommentForm {post} />
     </article>
     {/if}
-    <div class="box">
-        <MenuHeader {menuHeader} />
-        <SearchForm {handleGetList} {searchForm} />
-        <Table tableTitle={boardTitle} {tableList} >
-            <BoardList {tableList} {handleSetPost} {boardName}/>
-        </Table>
-        <Pagenation {handleGetList} {fullPage} {currentPage} />
-    </div>
+    <MenuHeader {menuHeader} />
+    <SearchForm {handleGetList} {searchForm} />
+    <Table tableTitle={boardTitle} {tableList} >
+        <BoardList {tableList} {handleSetPost} {boardName}/>
+    </Table>
     {#if $userInfo}
         <div class="board__write-button">
-            <!-- <button 
-                class="black medium"
+            <button 
+                class="medium"
                 on:click={()=>{
                     writeBoard.set(path)
                     navigate(`/write?board=${boardName}`)}
                 }
             >
                 글쓰기
-            </button> -->
+            </button>
         </div>
     {/if}
+    <Pagenation {handleGetList} {fullPage} {currentPage} />
 </div>
 
 <style lang="scss">

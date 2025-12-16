@@ -1,14 +1,14 @@
 <script lang=ts>
+    import Editor from "utils/Editor.svelte";
     import { handleGetPost } from "services/board";
     import { getUserInfo } from "services/userInfo";
     import { currentUrl, userInfo, writeBoard } from "stores/store";
     import { navigate } from "svelte-routing";
-    import BoardEditor from "utils/BoardEditor.svelte";
     import { got, urlParams } from "utils/helpers";
     import { imageFormatter } from "utils/imageFormatter";
     import { popup } from "utils/popup";
 
-    let title: string;
+    let title: string = "123";
     let postId: number;
     let content: string;
     let modifyContent: string;
@@ -30,6 +30,7 @@
 
     const onTextChange = (event: any) => {
         content = event.detail.html
+        console.log(content)
         imageFormatter(title, content)
     }
 
@@ -40,26 +41,28 @@
             boardName,
         }
 
-        const formatContent = await imageFormatter(title, content)
-        if (formatContent?.status == false) {
-            return popup(`${formatContent.index}번째 이미지가 업로드 용량을 초과했습니다.`, 0)
-        } else if (formatContent?.status == true){
-            params["thumbnailURL"] = formatContent["thumbnail"]
-            params["content"] = formatContent["html"]
-        }
+        // const formatContent = await imageFormatter(title, content)
+        // if (formatContent?.status == false) {
+        //     return popup(formatContent.message, 0)
+        // } else if (formatContent?.status == true){
+        //     params["thumbnailURL"] = formatContent["thumbnail"]
+        //     params["content"] = formatContent["html"]
+        // }
 
-        const response = await got({
-            urlParams: "/post/create",
-            method: "POST",
-            setParams: params
-        })
+        console.log(params)
 
-        if (response.statusCode == 1){
-            await getUserInfo()
-            navigate(`/${$writeBoard}?board=${boardName}&post=${response.data.postId}`)
-        } else {
-            popup(response.message, response.statusCode)
-        }
+        // const response = await got({
+        //     urlParams: "/post/create",
+        //     method: "POST",
+        //     setParams: params
+        // })
+
+        // if (response.statusCode == 1){
+        //     await getUserInfo()
+        //     navigate(`/${$writeBoard}?board=${boardName}&post=${response.data.postId}`)
+        // } else {
+        //     popup(response.message, response.statusCode)
+        // }
     }
 
     const handleUpdateSubmit = async () => {
@@ -72,7 +75,7 @@
 
         const formatContent = await imageFormatter(title, content)
         if (formatContent?.status == false) {
-            return popup(`${formatContent.index}번째 이미지가 업로드 용량을 초과했습니다.`, 0)
+            return popup(formatContent.message, 0)
         } else if (formatContent?.status == true){
             params["thumbnailURL"] = formatContent["thumbnail"]
             params["content"] = formatContent["html"]
@@ -85,8 +88,9 @@
         })
         if (response.statusCode !== 1){
             popup(response.message, response.statusCode)
+        } else {
+            history.go(-1)
         }
-        history.go(-1)
     }
 
     init()
@@ -100,22 +104,23 @@
         <input 
             bind:value={title}
             type="text" 
+            class="edit__title__input"
             required
             placeholder="제목을 입력해 주세요."
         >
     </div>
-    <BoardEditor {onTextChange} data={modifyContent} />
+    <Editor {onTextChange} data={modifyContent} />
     <div class="edit__form">
         <button 
             type="button"
-            class="medium"
+            class="black line medium"
             on:click={()=>{
                 history.go(-1)
             }}
         >뒤로가기</button>
         <button 
             type="submit"
-            class="black medium"
+            class="medium"
         >
             {postId ? "수정하기" : "등록하기"}
         </button>

@@ -5,12 +5,12 @@
 :global(button) {
   min-width: fit-content;
   background: var(--main-color);
-  border: 1px solid var(--ligth-color);
+  border: 1px solid var(--main-color);
   padding: 0.35rem 0.65rem;
   border-radius: var(--border-radius);
   text-align: center;
   cursor: pointer;
-  color: #d0d2d6;
+  color: #fff;
   font-weight: 700;
   transition: filter 0.3s;
 

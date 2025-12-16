@@ -26,5 +26,7 @@
     &__write-button {
         display: flex;
         justify-content: end;
+        margin-top: var(--distance);
+        // background-color: --var(main-color);
     }
 }
