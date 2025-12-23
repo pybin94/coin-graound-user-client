@@ -1,9 +1,9 @@
-export interface Chat {
+export interface ChatModel {
     joinCount: number;
-    chatHistory: Array<ChatHistory>
+    chatHistory: Array<ChatHistoryModel>
 }
 
-export interface ChatHistory {
+export interface ChatHistoryModel {
     id: number;
     nickname: string;
     picture: string;

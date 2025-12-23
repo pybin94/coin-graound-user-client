@@ -1,4 +1,4 @@
-import type { GotParams, SortObjectData } from 'models/helpers';
+import type { GotParamsModel, SortObjectDataModel } from 'models/helpers';
 import { userInfo } from "stores/store";
 import { navigate } from "svelte-routing";
 
@@ -11,11 +11,11 @@ export const url = (params: string, EXTRA_URL: boolean = false): string => {
 }
 
 export const got = async ({
-    urlParams = "", 
-    method = "GET", 
-    setParams, 
+    urlParams = "",
+    method = "GET",
+    setParams,
     EXTRA_URL = false
-}: GotParams ): Promise<any> => {
+}: GotParamsModel): Promise<any> => {
 
     let api: string = url(urlParams, EXTRA_URL)
     let options: object = {
@@ -27,13 +27,13 @@ export const got = async ({
     };
 
     if (setParams) options["body"] = JSON.stringify(setParams);
-    
+
     try {
         const response = await fetch(api, options);
         const res = await response.json();
-        
-        if(res.status == -1) {  
-            navigate("/");  
+
+        if (res.status == -1) {
+            navigate("/");
             return false;
         } else if (res.status === -2, res.error == -2) {
             deleteCookie("userInfo")
@@ -44,7 +44,7 @@ export const got = async ({
         }
     } catch (error) {
         console.log(error);
-        return {status: 0, message: "오류가 발생했습니다."};
+        return { status: 0, message: "오류가 발생했습니다." };
     };
 };
 
@@ -66,15 +66,15 @@ export const getCookie = (cookieName: string): string => {
 export const setCookie = (cookieName: string, value: any, expires: number = 0): void => {
 
     var date = new Date();
-    date.setTime(date.getTime() + expires*1000);
+    date.setTime(date.getTime() + expires * 1000);
 
     expires == 0
-    ? document.cookie = cookieName + '=' + encodeURIComponent(value) + ';path=/'
-    : document.cookie = cookieName + '=' + encodeURIComponent(value) + ';expires=' + date.toUTCString() + ';path=/';
+        ? document.cookie = cookieName + '=' + encodeURIComponent(value) + ';path=/'
+        : document.cookie = cookieName + '=' + encodeURIComponent(value) + ';expires=' + date.toUTCString() + ';path=/';
 }
 
 export const deleteCookie = (cookieName: string): void => {
-	document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
 }
 
 export const getLs = (key: string) => {
@@ -88,7 +88,7 @@ export const getLs = (key: string) => {
         return null;
     }
 
-    const decodedValue = atob(parsedData.value); 
+    const decodedValue = atob(parsedData.value);
     const decoder = new TextDecoder();
     return decoder.decode(new Uint8Array([...decodedValue].map(char => char.charCodeAt(0))));
 }
@@ -108,22 +108,20 @@ export const setLs = (key: string, value: any, expires: number = 0) => {
 };
 
 export const moneyFormat = (money: number | string) => {
-    if(!money) return "0";
-    
+    if (!money) return "0";
+
     let setMoney: number;
     let removeDecimal: number;
 
-    if(typeof money === 'string'){
+    if (typeof money === 'string') {
         setMoney = parseInt(money)
-    } else if (typeof money === 'number'){
+    } else if (typeof money === 'number') {
         setMoney = money
     }
 
     const format = setMoney.toLocaleString('ko-KR', {
         maximumFractionDigits: 2
     });
-    // removeDecimal = Math.floor(setMoney)
-    // const format = removeDecimal.toLocaleString('ko-KR');
     return format;
 }
 
@@ -140,21 +138,21 @@ export const formatDollar = (num: number): string => {
 }
 
 export const bigMoneyFormat = (money: number | string) => {
-    if(!money) return "0";
-    
+    if (!money) return "0";
+
     let setMoney: number;
     let removeDecimal: number;
 
-    if(typeof money === 'string'){
+    if (typeof money === 'string') {
         setMoney = parseInt(money)
-    } else if (typeof money === 'number'){
+    } else if (typeof money === 'number') {
         setMoney = money
     }
 
     removeDecimal = Math.floor(setMoney)
-    
+
     if (removeDecimal >= 1000000) {
-        return (Math.floor(removeDecimal/1000000 * 100) / 100).toLocaleString('ko-KR') + "M";
+        return (Math.floor(removeDecimal / 1000000 * 100) / 100).toLocaleString('ko-KR') + "M";
     }
 
     const format = removeDecimal.toLocaleString('ko-KR');
@@ -176,7 +174,7 @@ export const dateFormat = (dateString: string | Date) => {
 }
 
 export const dateFormatShort = (dateString: string | Date) => {
-    if(!dateString) return "0000-00-00"
+    if (!dateString) return "0000-00-00"
     const setDate = new Date(dateString);
 
     const year = setDate.getFullYear();
@@ -209,7 +207,7 @@ export const boardDateFormat = (dateString: string | Date) => {
     const nowLocalDateString = `${nowYear}-${String(nowMonth).padStart(2, '0')}-${String(nowDay).padStart(2, '0')}`;
     const setLocalDateString = `${nowYear}-${String(setMonth).padStart(2, '0')}-${String(setDay).padStart(2, '0')}`;
 
-    if(setLocalDateString == nowLocalDateString){
+    if (setLocalDateString == nowLocalDateString) {
         return `${String(setHours).padStart(2, '0')}:${String(setMinutes).padStart(2, '0')}`;
     } else {
         return `${String(setMonth).padStart(2, '0')}.${String(setDay).padStart(2, '0')}`;
@@ -245,7 +243,7 @@ export const nowDate = () => {
 
 export const dayCalculator = (date: string, setDay: number) => {
     const dateTime = new Date(date).getTime();
-    const fixTime = dateTime + setDay*86400000
+    const fixTime = dateTime + setDay * 86400000
     const nowDate = new Date(fixTime)
     const year = nowDate.getFullYear();
     const month = nowDate.getMonth() + 1;
@@ -267,12 +265,12 @@ export const wait = (timeToDelay: number) => new Promise((resolve) => setTimeout
 
 export const reload = (url: string) => {
     getPathname(url);
-    if(window.location.pathname == getPathname(url)) {
+    if (window.location.pathname == getPathname(url)) {
         navigate("/reload", { replace: false })
     }
 }
 
-export const sortObjectData = ({ data, target, order }: SortObjectData) => {
+export const sortObjectData = ({ data, target, order }: SortObjectDataModel) => {
     if (!data || typeof data !== "object") return {};
 
     const multiplier = order === "desc" ? -1 : 1;
@@ -320,16 +318,16 @@ export const timeAgo = (inputDate: string, now: number = Date.now()) => {
 
 export const convertToKSTTimeOnly = (isoDateStr: string): string => {
     const date = new Date(isoDateStr);
-  
+
     // UTC 시간 기준으로 date 객체를 만든 후 한국 시간 (UTC+9) 보정
     const kstOffset = 9 * 60; // 분 단위
     const localTime = new Date(date.getTime() + kstOffset * 60 * 1000);
-  
+
     // 시간, 분, 초 추출 및 포맷
     const hours = localTime.getUTCHours().toString().padStart(2, '0');
     const minutes = localTime.getUTCMinutes().toString().padStart(2, '0');
     const seconds = localTime.getUTCSeconds().toString().padStart(2, '0');
-  
+
     // return `${hours}:${minutes}:${seconds}`;
     return `${hours}:${minutes}`;
 }

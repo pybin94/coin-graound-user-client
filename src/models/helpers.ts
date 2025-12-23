@@ -1,15 +1,15 @@
-export interface SortObjectData {
+export interface SortObjectDataModel {
     data: object;
     target: string;
-    order?: OrderType;
-} 
+    order?: OrderTypeModel;
+}
 
-export enum OrderType {
+export enum OrderTypeModel {
     DESC = "desc",
     ASC = "asc",
 }
 
-export interface GotParams {
+export interface GotParamsModel {
     urlParams: string;
     method?: string;
     setParams?: object;

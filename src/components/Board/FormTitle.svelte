@@ -1,19 +1,16 @@
 <script lang="ts">
-    import type { Post } from "constants/board";
+    import { type PostModel } from "models/board";
     import { dateFormat } from "utils/helpers";
 
-    export let post: Post
+    export let post: PostModel;
 </script>
 
 <header class="form-title">
     <h3 class="form-title__title">{post.title}</h3>
     <div class="form-title__info">
-        <div class="form-title__info__user"> 
+        <div class="form-title__info__user">
             <p>
-                {post.user.nickname} 
-                <span class="form-title__info__user__level">
-                    {post.user.level}
-                </span>
+                {post.user.nickname}
             </p>
             <p>{dateFormat(post.createdAt)}</p>
         </div>

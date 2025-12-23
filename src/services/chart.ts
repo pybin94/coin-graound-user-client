@@ -1,4 +1,3 @@
-import { OrderType } from "models/helpers";
 import { TickerAskBid, type TickerInfo } from "models/chart";
 import { sortObjectData } from "utils/helpers";
 import { chartSort, chartSortOrder, chartSortTarget, nightMode } from "stores/store";
@@ -18,18 +17,18 @@ export const setupWebSocket = ({
     marketUrl,
     tickerCodes,
     tickers,
-    setAskBidBlink = ()=>{},
+    setAskBidBlink = () => { },
     hasAllKeysAddedD,
     updateTickers,
-    updateNeedSorting = ()=>{},
+    updateNeedSorting = () => { },
 }: WebSocketOptions): { ws: WebSocket; unsubscribe: () => void } => {
     const ws = new WebSocket(marketUrl);
     let needSorting = false
     let newtickers = tickers;
 
     const unsubscribe = chartSort.subscribe((val) => {
-        if(!val) return;
-        
+        if (!val) return;
+
         const sorted = sortObjectData({
             data: newtickers,
             order: get(chartSortOrder),
@@ -39,12 +38,12 @@ export const setupWebSocket = ({
         updateTickers(newtickers);
         chartSort.set(false)
     })
-    
+
     ws.onopen = () => {
         const request = [
-        { ticket: String(new Date().getTime()) },
-        { type: "ticker", codes: tickerCodes },
-        { format: "SIMPLE" },
+            { ticket: String(new Date().getTime()) },
+            { type: "ticker", codes: tickerCodes },
+            { format: "SIMPLE" },
         ];
         ws.send(JSON.stringify(request));
     };
@@ -103,15 +102,15 @@ export const setupWebSocket = ({
 export const setupWebSocketBinance = ({
     marketUrl,
     tickers,
-    setAskBidBlink = ()=>{},
+    setAskBidBlink = () => { },
     updateTickers,
-}: WebSocketOptions ): { ws: WebSocket; unsubscribe: () => void } => {
+}: WebSocketOptions): { ws: WebSocket; unsubscribe: () => void } => {
     const ws = new WebSocket(marketUrl);
     let newtickers = tickers;
 
     const unsubscribe = chartSort.subscribe((val) => {
-        if(!val) return;
-        
+        if (!val) return;
+
         const sorted = sortObjectData({
             data: newtickers,
             order: get(chartSortOrder),
@@ -128,7 +127,7 @@ export const setupWebSocketBinance = ({
 
         usdtTickers.forEach((parsedData) => {
             const parseSymbol = parsedData.s.replace("USDT", "");
-            const tickerAskBid: TickerAskBid = parsedData.c == parsedData.a ?  TickerAskBid.ASK : TickerAskBid.BID
+            const tickerAskBid: TickerAskBid = parsedData.c == parsedData.a ? TickerAskBid.ASK : TickerAskBid.BID
             const updatedTicker = {
                 hp: parseFloat(parsedData.h),
                 lp: parseFloat(parsedData.l),
@@ -170,31 +169,31 @@ export const fetchBinanceTicker = async ({
     const usdtTickers = res.filter((ticker: any) => ticker.symbol.endsWith("USDT"));
 
     usdtTickers.forEach((parsedData: any) => {
-    const parseSymbol = parsedData.symbol.replace("USDT", "");
+        const parseSymbol = parsedData.symbol.replace("USDT", "");
 
-    const updatedTicker = {
-        hp: parseFloat(parsedData.highPrice),
-        lp: parseFloat(parsedData.lowPrice),
-        tp: parseFloat(parsedData.lastPrice),
-        scp: parseFloat(parsedData.lastPrice) - parseFloat(parsedData.openPrice),
-        scr: Number(parsedData.priceChangePercent).toFixed(2),
-        atv24h: parseFloat(parsedData.volume),
-        atp24h: parseFloat(parsedData.quoteVolume),
-        h52wp: undefined,
-        l52wp: undefined,
-        ab: undefined,
-        mw: undefined,
-        id: tickers[parseSymbol]?.id,
-        kr: tickers[parseSymbol]?.kr,
-        en: tickers[parseSymbol]?.en,
-        s: parseSymbol,
-        ef: tickers[parseSymbol]?.ef,
-    } as TickerInfo;
+        const updatedTicker = {
+            hp: parseFloat(parsedData.highPrice),
+            lp: parseFloat(parsedData.lowPrice),
+            tp: parseFloat(parsedData.lastPrice),
+            scp: parseFloat(parsedData.lastPrice) - parseFloat(parsedData.openPrice),
+            scr: Number(parsedData.priceChangePercent).toFixed(2),
+            atv24h: parseFloat(parsedData.volume),
+            atp24h: parseFloat(parsedData.quoteVolume),
+            h52wp: undefined,
+            l52wp: undefined,
+            ab: undefined,
+            mw: undefined,
+            id: tickers[parseSymbol]?.id,
+            kr: tickers[parseSymbol]?.kr,
+            en: tickers[parseSymbol]?.en,
+            s: parseSymbol,
+            ef: tickers[parseSymbol]?.ef,
+        } as TickerInfo;
 
-    if (tickers[parseSymbol]) {
-        tickers[parseSymbol] = updatedTicker;
-        updateNeedSorting(true);
-    }
+        if (tickers[parseSymbol]) {
+            tickers[parseSymbol] = updatedTicker;
+            updateNeedSorting(true);
+        }
     });
 
     const sorted = sortObjectData({

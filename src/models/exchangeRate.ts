@@ -1,13 +1,13 @@
-interface MarketItem {
+interface MarketItemModel {
     price: number;
     scp: number;
     scr: string;
 }
-  
+
 export interface ExchangeRateDataModel {
-    USDKRW: MarketItem;
-    USDINDEX: MarketItem;
-    KOSPI: MarketItem;
-    NASDAQ: MarketItem;
-    SNP500: MarketItem;
+    USDKRW: MarketItemModel;
+    USDINDEX: MarketItemModel;
+    KOSPI: MarketItemModel;
+    NASDAQ: MarketItemModel;
+    SNP500: MarketItemModel;
 }

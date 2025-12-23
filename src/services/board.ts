@@ -1,5 +1,4 @@
 import type { Post } from "constants/board"
-import { postParams } from "stores/store"
 import { got, urlParams } from "utils/helpers"
 
 export const handleGetPost = async (postId: number): Promise<Post> => {
@@ -9,13 +8,12 @@ export const handleGetPost = async (postId: number): Promise<Post> => {
     }
 
     const response = await got({
-        urlParams: "/post", 
-        method: "POST", 
+        urlParams: "/post",
+        method: "POST",
         setParams: params
     })
     if (response.statusCode == 1) {
-        postParams.set(urlParams("post"))
-        window.scrollTo({ top: 0  }); 
+        window.scrollTo({ top: 0 });
         return response.data
     }
 }
@@ -29,4 +27,19 @@ export const updateViewCount = async (postId: number): Promise<void> => {
         method: "PATCH",
         setParams: params
     })
+}
+
+export const uploadImage = async (image: string): Promise<string> => {
+    let params = {
+        image
+    }
+    const response = await got({
+        urlParams: "/post/image",
+        method: "POST",
+        setParams: params
+    })
+
+    if (response.statusCode == 1) {
+        return response.data.filePath
+    }
 }
