@@ -334,6 +334,6 @@ export const convertToKSTTimeOnly = (isoDateStr: string): string => {
     return `${hours}:${minutes}`;
 }
 
-export const handleError = (event: any) => {
-    event.currentTarget.src = '/src/assets/logo.png';
+export const handleImageError = (event: any, url = "/src/assets/logo.png") => {
+    event.currentTarget.src = url;
 }

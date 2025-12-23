@@ -1,7 +1,7 @@
 <script lang="ts">
     import { type FeedModel } from "models/board";
     import MyPage from "pages/MyPage/MyPage.svelte";
-    import { got, handleError, timeAgo } from "utils/helpers";
+    import { got, handleImageError, timeAgo } from "utils/helpers";
     import Pagenation from "utils/Pagenation.svelte";
     import { popup } from "utils/popup";
 
@@ -78,7 +78,7 @@
                             class="my-feed__list__header__img" 
                             src="https://s3-symbol-logo.tradingview.com/crypto/XTVC{item.coin.symbol}--big.svg" 
                             alt="{item.coin.symbol} 아이콘"
-                            on:error={handleError}
+                            on:error={handleImageError}
                         >
                         <p>{item.coin.symbol}</p>
                         <p>{item.price}</p>

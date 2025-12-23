@@ -25,6 +25,6 @@
     </div>
 </header>
 
-<style lnag="scss">
+<style lang="scss">
     @use "./FormTitle.scss";
 </style>

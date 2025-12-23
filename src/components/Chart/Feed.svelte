@@ -3,7 +3,7 @@
     import { type SymbolInfo, type TickerInfo } from "models/chart";
     import { userInfo } from "stores/store";
     import { onDestroy, onMount } from "svelte";
-    import { got, handleError, moneyFormat, timeAgo } from "utils/helpers";
+    import { got, handleImageError, moneyFormat, timeAgo } from "utils/helpers";
     import Modal from "utils/Modal.svelte";
     import { popup } from "utils/popup";
 
@@ -163,7 +163,7 @@
             class="feed__header__img" 
             src="https://s3-symbol-logo.tradingview.com/crypto/XTVC{symbolInfo.s}--big.svg" 
             alt="{symbolInfo.s} 아이콘"
-            on:error={handleError}
+            on:error={handleImageError}
         >
         <h3 class="feed__header__title">{ticker?.kr ? ticker.kr : symbolInfo.s} 피드</h3>
     </div>

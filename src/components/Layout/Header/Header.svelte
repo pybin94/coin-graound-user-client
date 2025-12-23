@@ -4,7 +4,7 @@
     import { userInfo, nightMode, usDollerPrice, currentIndex } from "stores/store";
     import { onDestroy, onMount } from "svelte";
     import { link } from "svelte-routing"
-    import { getCookie, setCookie } from "utils/helpers";
+    import { getCookie, handleImageError, setCookie } from "utils/helpers";
 
     let header: HTMLHeadElement;
     let exchangeRateData: ExchangeRateDataModel;
@@ -199,7 +199,10 @@
             {#if $userInfo}
                 <a class="header__right__myinfo" use:link href="/mypage/profile" on:click={()=>{$currentIndex = -1}}>
                     {#if JSON.parse($userInfo)["picture"]}
-                        <img src={JSON.parse($userInfo)["picture"]} alt="프로필 이미지">
+                        <img 
+                            src={JSON.parse($userInfo)["picture"]} alt="프로필 이미지"
+                            on:error={(e)=>{handleImageError(e, `/src/assets/uploads/profile/none${JSON.parse($userInfo)["id"] % 5}.png`)}}
+                        >
                     {:else}
                         <img src="/src/assets/uploads/profile/none{JSON.parse($userInfo)["id"] % 5}.png" alt="프로필 이미지">
                     {/if}

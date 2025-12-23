@@ -267,7 +267,7 @@
 
 
 <style lang="scss">
-    @import "../Calculate.scss";
+    @use "../Calculate.scss";
 
     .calculate-padding {
         padding-bottom: calc(var(--distance) / 2);

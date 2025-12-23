@@ -158,5 +158,5 @@
 </div>
 
 <style lang="scss">
-    @import "../Calculate.scss";
+    @use "../Calculate.scss";
 </style>

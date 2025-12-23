@@ -29,7 +29,7 @@
                 {#if item.images}
                 <div class="news-list__article__image-wap">
                     {#each JSON.parse(item.images) as image}
-                        <a href={`/src/assets/images/${image}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`/src/assets/uploads/news/${image}`} target="_blank" rel="noopener noreferrer">
                             <div class="news-list__article__image {item.images && JSON.parse(item.images).length === 1 ? 'single' : 'multiple'}">
                                 <img src={`/src/assets/uploads/news/${image}`} alt="postId">
                             </div>

@@ -26,7 +26,7 @@
             exchange: "binance",
             icon: "binance.jpg",
             title: "바이낸스 현물/선물",
-            explanation: "🎉 현물거래 선물 거레 모두 페이백 50% ‼️",
+            explanation: "🎉 현물·선물 거래 수수료 페이백 50% ‼️",
             detail: "링크 클릭후 가입 → 페이백 50%",
             code: "COINSELTDA",
             background: "#2c3644, #1a1c24"
