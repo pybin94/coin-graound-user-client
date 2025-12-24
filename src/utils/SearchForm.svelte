@@ -13,7 +13,7 @@
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             event.preventDefault();
             handleSearch();
         }
@@ -21,7 +21,7 @@
 </script>
 
 <form class="search-form" on:submit|preventDefault={handleSearch}>
-    <select 
+    <!-- <select 
         bind:value={searchForm[0]} 
         on:change={handleSearch}
         disabled={loading}
@@ -29,35 +29,35 @@
         {#each optionValue as item}
             <option value={item}>{item}개</option>
         {/each}
-    </select>
-    
-    <div class="search-form__search">
-        <div class="search-form__search__wrap">
-            <input 
-                id="searchInput" 
-                type="text" 
-                bind:value={searchForm[2]}
-                {placeholder}
-                on:keypress={handleKeyPress}
-                disabled={loading}
-            >
-            <button 
-                type="submit" 
-                class="search-form__search__wrap__button"
-                disabled={loading}
-            >
-                {#if loading}
-                    <div class="loading-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                {:else}
-                    검색
-                {/if}
-            </button>
-        </div>
+    </select> -->
+
+    <!-- <div class="search-form__search"> -->
+    <div class="search-form__search__wrap">
+        <input
+            id="searchInput"
+            type="text"
+            bind:value={searchForm[2]}
+            {placeholder}
+            on:keypress={handleKeyPress}
+            disabled={loading}
+        />
+        <button
+            type="submit"
+            class="search-form__search__wrap__button"
+            disabled={loading}
+        >
+            {#if loading}
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            {:else}
+                검색
+            {/if}
+        </button>
     </div>
+    <!-- </div> -->
 </form>
 
 <style lang="scss">
@@ -85,16 +85,24 @@
                     border-radius: 50%;
                     animation: loadingDots 1.4s infinite ease-in-out;
 
-                    &:nth-child(1) { animation-delay: -0.32s; }
-                    &:nth-child(2) { animation-delay: -0.16s; }
-                    &:nth-child(3) { animation-delay: 0s; }
+                    &:nth-child(1) {
+                        animation-delay: -0.32s;
+                    }
+                    &:nth-child(2) {
+                        animation-delay: -0.16s;
+                    }
+                    &:nth-child(3) {
+                        animation-delay: 0s;
+                    }
                 }
             }
         }
     }
 
     @keyframes loadingDots {
-        0%, 80%, 100% {
+        0%,
+        80%,
+        100% {
             transform: scale(0);
             opacity: 0.5;
         }

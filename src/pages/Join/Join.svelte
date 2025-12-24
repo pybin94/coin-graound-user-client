@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { prevUrl } from "stores/url.store";
     import { link } from "svelte-routing";
     import { getCookie, setCookie } from "utils/helpers";
 
@@ -23,17 +24,17 @@
         //     provider: "apple",
         //     img: "apple.svg",
         // },
-    ]
+    ];
 
     const setLatestJoin = (provider: string) => {
-        setCookie("latest-join", provider)
-    }
+        setCookie("latest-join", provider);
+    };
 </script>
 
 <div class="no-layout content">
     <section class="join">
         <a use:link href="/" class="join__logo">
-            <img src="/src/assets/logo.png" alt="사이트 로고">
+            <img src="/src/assets/logo.png" alt="사이트 로고" />
         </a>
         <div class="join__social">
             {#each socialList as item}
@@ -43,12 +44,14 @@
                         <p>최근 로그인</p>
                         <div class="join__divider__line right"></div>
                     </div>
-                    <a 
-                        class="join__social__icon {item.provider}" 
-                        href="{process.env.URL}/{item.provider}"
-                        on:click={()=>{setLatestJoin(item.provider)}}
+                    <a
+                        class="join__social__icon {item.provider}"
+                        href={`${process.env.URL}/${item.provider}?state=${encodeURIComponent($prevUrl)}`}
+                        on:click={() => {
+                            setLatestJoin(item.provider);
+                        }}
                     >
-                        <img src="/src/assets/icon/social/{item.img}" alt="">
+                        <img src="/src/assets/icon/social/{item.img}" alt="" />
                         <p>{item.name}로 시작하기</p>
                     </a>
                     <div class="join__divider">
@@ -60,32 +63,39 @@
             {/each}
             {#each socialList as item}
                 {#if !getCookie("latest-join") || getCookie("latest-join") != item.provider}
-                    <a 
-                        class="join__social__icon {item.provider}" 
-                        href="{process.env.URL}/{item.provider}"
-                        on:click={()=>{setLatestJoin(item.provider)}}
+                    <a
+                        class="join__social__icon {item.provider}"
+                        href={`${process.env.URL}/${item.provider}?state=${encodeURIComponent($prevUrl)}`}
+                        on:click={() => {
+                            setLatestJoin(item.provider);
+                        }}
                     >
-                        <img src="/src/assets/icon/social/{item.img}" alt="">
+                        <img src="/src/assets/icon/social/{item.img}" alt="" />
                         <p>{item.name}로 시작하기</p>
                     </a>
                 {/if}
             {/each}
 
-            <a 
-                class="join__social__icon apple" 
-                on:click={()=>{window.history.back()}}
+            <button
+                class="join__social__icon apple"
+                on:click={() => {
+                    history.go(-1);
+                }}
             >
                 <p>뒤로가기</p>
-            </a>
+            </button>
         </div>
-        
+
         <div class="join__footer">
             <p>안전하고 빠른 소셜 로그인으로 시작하세요</p>
             <p>개인정보는 안전하게 보호됩니다</p>
-            <h6 style="text-decoration-line: line-through;">코인그라운드는 당신의 개인정보에 관심 없습니다</h6>
+            <h6 style="text-decoration-line: line-through;">
+                코인그라운드는 당신의 개인정보에 관심 없습니다
+            </h6>
         </div>
     </section>
 </div>
+
 <style lang="scss">
     @use "./Join.scss";
 </style>

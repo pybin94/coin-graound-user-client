@@ -126,6 +126,82 @@
 </script>
 
 <header class="header" bind:this={header}>
+    <div class="header__wrap wrap exchange-wrap">
+        {#if exchangeRateData}
+            {#if isMobile}
+                <!-- 모바일: 슬라이드 효과 -->
+                <div class="header__exchange-rate-slider">
+                    {#each exchangeRateList as item, index}
+                        <div
+                            class="header__exchange-rate"
+                            class:active={index === currentSlideIndex}
+                            class:slide-up={index === currentSlideIndex}
+                            style="transform: translateY({(index -
+                                currentSlideIndex) *
+                                100}%)"
+                        >
+                            <div class="header__exchange-rate__name">
+                                {convertExchangeRateName(item)}
+                            </div>
+                            <div class="header__exchange-rate__price">
+                                {exchangeRateData[item].price}
+                            </div>
+                            {#if exchangeRateData[item].scp >= 0}
+                                <div class="red header__exchange-rate__percent">
+                                    {exchangeRateData[item].scp}
+                                </div>
+                                <div class="red header__exchange-rate__percent">
+                                    <i class="fa-solid fa-caret-up up"></i>
+                                    {exchangeRateData[item].scr}
+                                </div>
+                            {:else}
+                                <div
+                                    class="blue header__exchange-rate__percent"
+                                >
+                                    {exchangeRateData[item].scp}
+                                </div>
+                                <div
+                                    class="blue header__exchange-rate__percent"
+                                >
+                                    <i class="fa-solid fa-caret-down down"></i>
+                                    {exchangeRateData[item].scr}
+                                </div>
+                            {/if}
+                        </div>
+                    {/each}
+                </div>
+            {:else}
+                <!-- 데스크톱: 기존 방식 -->
+                {#each exchangeRateList as item}
+                    <div class="header__exchange-rate">
+                        <div class="header__exchange-rate__name">
+                            {convertExchangeRateName(item)}
+                        </div>
+                        <div class="header__exchange-rate__price">
+                            {exchangeRateData[item].price}
+                        </div>
+                        {#if exchangeRateData[item].scp >= 0}
+                            <div class="red header__exchange-rate__percent">
+                                {exchangeRateData[item].scp}
+                            </div>
+                            <div class="red">
+                                <i class="fa-solid fa-caret-up up"></i>
+                                {exchangeRateData[item].scr}
+                            </div>
+                        {:else}
+                            <div class="blue header__exchange-rate__percent">
+                                {exchangeRateData[item].scp}
+                            </div>
+                            <div class="blue">
+                                <i class="fa-solid fa-caret-down down"></i>
+                                {exchangeRateData[item].scr}
+                            </div>
+                        {/if}
+                    </div>
+                {/each}
+            {/if}
+        {/if}
+    </div>
     <div class="header__wrap wrap">
         <a class="header__logo" use:link href="/">
             <img class="header__logo__icon" src="/src/assets/logo.png" alt="" />
@@ -180,9 +256,9 @@
                         />
                     {:else}
                         <img
-                            src="/src/assets/uploads/profile/none{JSON.parse(
-                                $userInfo,
-                            )['id'] % 5}.png"
+                            src="/src/assets/uploads/profile/none{$userInfo[
+                                'id'
+                            ] % 5}.png"
                             alt="프로필 이미지"
                         />
                     {/if}

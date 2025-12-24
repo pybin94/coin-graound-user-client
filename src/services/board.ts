@@ -1,7 +1,7 @@
-import type { Post } from "constants/board"
+import type { PostModel } from "models/board"
 import { got, urlParams } from "utils/helpers"
 
-export const handleGetPost = async (postId: number): Promise<Post> => {
+export const handleGetPost = async (postId: number): Promise<PostModel> => {
 
     let params = {
         postId

@@ -3,7 +3,7 @@
     import { boardDateFormat } from "utils/helpers";
 
     export let tableList: Array<object>;
-    // export let handleSetPost: Function;
+    export let handleSetPost: Function;
     export let boardId: string;
 </script>
 
@@ -11,21 +11,20 @@
     <tr class="board-list">
         <td>{item["id"]}</td>
         <td class="board-list__title">
-            <a use:link href="?id={boardId}&post={item['id']}">
-                <!-- <a
+            <!-- <a use:link href="?id={boardId}&post={item['id']}"> -->
+            <a
                 use:link
                 href="?id={boardId}&post={item['id']}"
                 on:click={() => {
-                    if (item["id"] != $postParams) {
-                        handleSetPost(item["id"]);
-                    }
+                    // if (item["id"] != $postParams) {
+                    //     handleSetPost(item["id"]);
+                    // }
+                    handleSetPost(item["id"]);
                 }}
                 on:keypress={() => {
-                    if (item["id"] != $postParams) {
-                        handleSetPost(item["id"]);
-                    }
+                    handleSetPost(item["id"]);
                 }}
-            > -->
+            >
                 <div class="board-list__title__text">{item["title"]}</div>
                 {#if item["thumbnailURL"]}
                     <i class="fa-solid fa-image board-list__title__image-icon"

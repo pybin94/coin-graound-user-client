@@ -46,6 +46,7 @@
         path = window.location.pathname.replace("/", "");
 
         setParams("id", boardId);
+        post = null;
         const postId = urlParams("post");
         if (postId) post = await handleGetPost(Number(postId));
 
@@ -103,6 +104,7 @@
 </script>
 
 <div class="content board">
+    <MenuHeader {menuHeader} />
     {#if post}
         <article class="board__form box">
             <FormTitle {post} />
@@ -117,14 +119,11 @@
             <CommentForm {post} />
         </article>
     {/if}
-    <MenuHeader {menuHeader} />
-    <SearchForm {handleGetList} {searchForm} />
     <Table tableTitle={boardTitle} {tableList}>
-        <BoardList {tableList} {boardId} />
-        <!-- <BoardList {tableList} {handleSetPost} {boardId} /> -->
+        <BoardList {tableList} {handleSetPost} {boardId} />
     </Table>
-    {#if $userInfo}
-        <div class="board__write-button">
+    <div class="board__write-button">
+        {#if $userInfo}
             <button
                 class="medium"
                 on:click={() => {
@@ -134,8 +133,11 @@
             >
                 글쓰기
             </button>
+        {/if}
+        <div class="board__write-button__search">
+            <SearchForm {handleGetList} {searchForm} />
         </div>
-    {/if}
+    </div>
     <Pagenation {handleGetList} {fullPage} {currentPage} />
 </div>
 

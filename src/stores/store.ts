@@ -7,7 +7,7 @@ export const currentUrl = writable("/");
 export const currentTitle = writable("");
 export const currentSubtitle = writable("");
 
-export const userInfo = writable(JSON.parse(getCookie("userInfo")) as UserModel)
+export const userInfo = writable((getCookie("userInfo") && JSON.parse(getCookie("userInfo")!) as UserModel) || null)
 export const gamePopup = writable();
 export const writeBoard = writable("");
 
